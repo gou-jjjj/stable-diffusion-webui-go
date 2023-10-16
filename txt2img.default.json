@@ -23,6 +23,8 @@
   "subseed_strength": 0,
   "tiling": false,
   "width": 512,
-  "prompt": "masterpiece, illustration,best_quality, rosaria_(genshin_impact), <lora:rosaria_anything_v4:0.95>, nun, fishnet, shoulder_gloves, bare_shoulder, bangs, (pray:1.2), hands together, sitting on floor, church, looking up, crying with eyes open, looking up,<lora:Moxin_10:0.2>, <lora:LORAChineseDoll_chinesedolllikeness1:0.2>, <lora:tifaMeenow_tifaV2:0.5>, red hair, red eyes, headdress, short hair, skinny, crown, [after]{zoom_enhance mask=\"fingers\" replacement=\"closeup hand\" max_denoising_strength=0.2 precision=80}[/after], white gloves,",
-  "negative_prompt": "wrinkles Deformed eyes, ((disfigured)), ((bad art)), ((deformed)), ((extra limbs)), (((duplicated))), ((morbid)), ((mutilated)), out of frame, extra fingers, mutated hands, poorly drawn eyes, ((poorly drawn hands)), ((poorly drawn face)), (((extra legs))), (fused fingers), (too many fingers), (((long neck))), tiling, poorly drawn, mutated, cross-eye, canvas frame, frame, cartoon, 3d, weird colors, blurry, ((old)), ((ugly)), ((child)),, NG_DeepNegative_V1_75T, (extra hand:1.4),"
+  "prompt": "Create a comic-style illustration using Stable Diffusion WebUI of a girl riding a horse.",
+  "negative_prompt": "Do not create an illustration of a girl riding a horse using Stable Diffusion WebUI."
 }
+
+

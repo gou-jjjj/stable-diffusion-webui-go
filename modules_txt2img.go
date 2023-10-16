@@ -1,45 +1,5 @@
 package main
 
-import (
-	"bufio"
-	"encoding/json"
-	"errors"
-	"log"
-	"os"
-)
-
-var (
-	DefaultTxt2ImgRequest = Txt2ImgRequest{}
-	ImagesIsNull          = errors.New("images is null")
-)
-
-func init() {
-	file, err := os.Open("./txt2img.default.json")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	bytes := make([]byte, 0)
-	t1 := Txt2ImgRequest{}
-
-	read := bufio.NewReader(file)
-
-	for {
-		b, err1 := read.ReadByte()
-		if err1 != nil {
-			break
-		}
-		bytes = append(bytes, b)
-	}
-
-	err = json.Unmarshal(bytes, &t1)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	t1.Seed = Seed()
-	DefaultTxt2ImgRequest = t1
-}
-
 type Txt2ImgRequest struct {
 	BatchSize         int           `json:"batch_size"`
 	CfgScale          int           `json:"cfg_scale"`
@@ -70,12 +30,12 @@ type Txt2ImgRequest struct {
 }
 
 type Txt2imgResponse struct {
-	Images    []string   `json:"images"`
-	Parameter Parameters `json:"parameters"`
-	Info      string     `json:"info"`
+	Images    []string     `json:"images"`
+	Parameter TxtParameter `json:"parameters"`
+	Info      string       `json:"info"`
 }
 
-type Parameters struct {
+type TxtParameter struct {
 	Prompt                            string        `json:"prompt"`
 	NegativePrompt                    string        `json:"negative_prompt"`
 	Styles                            []interface{} `json:"styles"`
@@ -126,33 +86,4 @@ type Parameters struct {
 	SendImages                        bool          `json:"send_images"`
 	SaveImages                        bool          `json:"save_images"`
 	AlwaysonScripts                   struct{}      `json:"alwayson_scripts"`
-}
-
-func (r Txt2imgResponse) ToImage(path string, name string) error {
-	if r.isNull() {
-		return ImagesIsNull
-	}
-	return ImageStore(r.Images[0], path, name)
-}
-
-func (r *Txt2imgResponse) ToSlice() ([]byte, error) {
-	if r.isNull() {
-		return nil, ImagesIsNull
-	}
-	img := r.Images[0]
-	return []byte(img), nil
-}
-
-func (r *Txt2imgResponse) ToString() (string, error) {
-	if r.isNull() {
-		return "", ImagesIsNull
-	}
-	return r.Images[0], nil
-}
-
-func (r *Txt2imgResponse) isNull() bool {
-	if r == nil || len(r.Images) <= 0 {
-		return true
-	}
-	return false
 }

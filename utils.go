@@ -40,21 +40,27 @@ func ImageStore(img string, path string, name string) error {
 		name += ".png"
 	}
 
-	NewImage, err := os.Create(path + name)
+	newImage, err := os.Create(path + name)
 	if err != nil {
 		return err
 	}
 
-	_, err = NewImage.Write(data)
+	_, err = newImage.Write(data)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("\u001B[1;32mThe image is saved successfully\u001B[0m")
+	Lg.Info(fmt.Sprintf("The image is saved to [%s]", path+name))
 	return nil
 }
 
 func Seed() int {
 	r := rand.New(rand.NewSource(time.Now().Unix()))
 	return int(r.Int31())
+}
+
+func Base64(b []byte) string {
+	// 将 []byte 转换为 Base64 编码的字符串
+	encoded := base64.StdEncoding.EncodeToString(b)
+	return encoded
 }
