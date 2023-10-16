@@ -20,21 +20,15 @@ package main
 import "fmt"
 
 func main() {
-	// If your sd service is not in 127.0.0.1:7861,
-	//you must use NewSD() to add host and port to initialize the client
-	sd := DefaultSD()
+   sd := NewSD("http://127.0.0.1:7861", 20*time.Minute, true)
+   
+   img, err := sd.Txt2Img(DefaultTxt2ImgReq())
+   if err != nil {
+      fmt.Println(err)
+      return
+   }
 
-	img, err := sd.Txt2Img(DefaultTxt2ImgRequest)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
-	err = img.ToImage("./images", "myimage.png")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+   fmt.Println(img.ToString())
 }
 ```
 
