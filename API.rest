@@ -1,0 +1,81 @@
+POST http://192.168.1.99:7860/sdapi/v1/txt2img HTTP/1.1
+Content-Type: application/json
+
+{
+    "prompt": "masterpiece, best quality,Amazing,finely detail,Depth of field,extremely detailed CG unity 8k wallpaper,girl",
+    "steps":50
+}
+
+GET http://192.168.1.99:7860/sdapi/v1/memory HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/sd-models HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/prompt-styles HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/realesrgan-models HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/face-restorers HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/embeddings HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/hypernetworks HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/upscalers HTTP/1.1
+
+GET http://192.168.1.99:7860/sdapi/v1/cmd-flags HTTP/1.1
+
+GET http://192.168.1.99:7860/user HTTP/1.1
+
+GET http://192.168.1.99:7860/login_check HTTP/1.1
+
+GET http://192.168.1.99:7860/token HTTP/1.1
+
+GET http://192.168.1.99:7860/app_id HTTP/1.1
+
+POST http://192.168.1.99:7860/reset HTTP/1.1
+Content-Type: application/json
+
+{
+  "session_hash": "string",
+  "fn_index": 0
+}
+
+POST http://192.168.1.99:7860/sdapi/v1/img2img HTTP/1.1
+Content-Type: application/json
+
+{
+  "init_images":["/9j/4AAQSkZJRgABAQAASABIAAD"]
+}
+
+POST http://192.168.1.99:7860/sdapi/v1/extra-single-image HTTP/1.1
+Content-Type: application/json
+
+{
+  "resize_mode": 0,
+  "show_extras_results": true,
+  "gfpgan_visibility": 0,
+  "codeformer_visibility": 0,
+  "codeformer_weight": 0,
+  "upscaling_resize": 2,
+  "upscaling_resize_w": 512,
+  "upscaling_resize_h": 512,
+  "upscaling_crop": true,
+  "upscaler_1": "None",
+  "upscaler_2": "None",
+  "extras_upscaler_2_visibility": 0,
+  "upscale_first": false,
+  "image": "/9j/4AA9qFFFFIAooooAKKKKACiiigAooooAKKKKACiiigAooooA//2Q=="
+}
+
+GET http://192.168.1.99:7860/sdapi/v1/options HTTP/1.1
+
+POST http://192.168.1.99:7860/sdapi/v1/options HTTP/1.1
+Content-Type: application/json
+
+{
+ "sd_model_checkpoint":"abyssorangemix2_Hard.safetensors [e714ee20aa]" 
+}
+
+
+#  "abyssorangemix2_Hard.safetensors [e714ee20aa]"
+#  "fashionGirl_v36.safetensors [83a344bc2a]"
